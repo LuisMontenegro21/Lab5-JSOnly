@@ -1,0 +1,18 @@
+function handleInteraction(event) {
+  // Prevent default action to handle touch and click events simultaneously
+  event.preventDefault();
+  alert('Element interacted with!');
+}
+
+// Attach event listeners
+var myElement = document.getElementById('myElement');
+myElement.addEventListener('click', handleInteraction, false);
+myElement.addEventListener('touchstart', handleInteraction, false);
+
+
+// Example: Add a button or some mechanism to call this toggle
+// This assumes you have a toggle button with id="toggleViewBtn"
+let toggleViewBtn = document.createElement("button");
+toggleViewBtn.innerText = "Toggle View";
+toggleViewBtn.addEventListener('click', toggleMobileView);
+document.body.appendChild(toggleViewBtn);
