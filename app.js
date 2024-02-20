@@ -26,20 +26,56 @@ chat.style.height = "100vh";
 // Tener los contactos del lado izquierdo
 let contacts = document.createElement("div");
 contacts.id= "contacts";
-contacts.style.width = "30%";
+contacts.style.width = "20%";
 contacts.style.borderRight = "1px solid #ccc";
 contacts.style.overflowY = "auto";
 
 // Tener el chat del lado derecho
 let chatWindow = document.createElement("div");
 chatWindow.id = "chatWindow";
-chatWindow.style.width = "70%";
+chatWindow.style.width = "80%";
 chatWindow.style.overflowY = "auto";
+chatWindow.style.position = 'relative';
+chatWindow.style.height = "95%";
 
-// Agregar los divs al chat principal
+
+// para la casilla de mandar mensajes
+let messageInputBox = document.createElement("div");
+messageInputBox.id = "messageInputBox";
+messageInputBox.style.position = "absolute";
+messageInputBox.style.bottom = "0";
+messageInputBox.style.width = "95%";
+messageInputBox.style.display = "flex";
+messageInputBox.style.padding = "10px";
+
+let messageInput = document.createElement("input");
+messageInput.id = "messageInput";
+messageInput.type = "text";
+messageInput.placeholder = ""
+messageInput.style.flex = "1";
+messageInput.style.marginRight = "10px";
+
+let send = document.createElement("button");
+send.id = "send";
+send.innerText = "enviar";
+
+send.addEventListener('click', function() {
+    const message = messageInput.value;
+    console.log("Message to send:", message); 
+    messageInput.value = '';
+});
+
+
+// Agregar los divs y elementos al chat principal
+messageInputBox.appendChild(messageInput);
+messageInputBox.appendChild(send);
+chatWindow.appendChild(messageInputBox);
 chat.appendChild(contacts)
 chat.appendChild(chatWindow)
 document.body.append(chat)
+
+
+
 
 
 
@@ -90,36 +126,6 @@ function loadSavedTheme(){
 
 
 
-// ajustarse dependiendo de la pantalla 
-function adjustVisibility(){
-    if (window.innerWidth <= 768){
-        contacts.style.width = "100%";
-        chatWindow.style.width = "100%";
-        chatWindow.style.display = "none";
-    }
-    else{
-        contacts.style.width = "30%";
-        chatWindow.style.width = "70%";
-        chatWindow.style.display = "block";
-    }
-}
-
-adjustVisibility();
-window.addEventListener('resize', adjustVisibility);
-
-// para pasar entre una pantalla chiquita y una grande
-function toggleView(){
-    if (window.innerWidth <= 768){
-        if (contacts.style.display === "none"){
-            contacts.style.display = "block";
-            chatWindow.style.display = "none";
-        }
-        else{
-            contacts.style.display = "none";
-            chatWindow.style.display = "block";
-        }
-    }
-}
 
 
 
